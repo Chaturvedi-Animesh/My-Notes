@@ -9,12 +9,9 @@ function Note({ note }) {
   const [editing, setEditing] = useState(false);
   const [text, setText] = useState(note.note);
 
-
-  const handleOnSubmit = (e) =>{
-
+  const handleOnSubmit = (e) => {
     e.preventDefault();
-
-  }
+  };
 
   return (
     <div style={{ width: "500px", height: "fit-content", margin: "1rem auto" }}>
@@ -35,7 +32,6 @@ function Note({ note }) {
             style={{
               display: editing ? "inline" : "none",
             }}
-
             onSubmit={handleOnSubmit}
           >
             <input
