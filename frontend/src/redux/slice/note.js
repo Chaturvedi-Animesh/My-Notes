@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from 'axios'
+
 
 export const fetchAll = createAsyncThunk("fetchAll", async () => {
-  const response = await fetch("http://localhost:3001/notes/");
-  const notes = await response.json();
-  return notes;
+  const resp = await axios.get("http://localhost:3001/notes/")
+  return resp.data;
 });
 
 const notesSlice = createSlice({
