@@ -38,13 +38,14 @@ const notesSlice = createSlice({
       })
       .addCase(deleteNote.fulfilled, (state, action) => {
         return state.filter((note) => note._id !== action.payload._id);
-      }).addCase(updateNote.fulfilled,(state,action)=>{
-        state.forEach(note=>{
-          if(note._id === action.payload._id){
-            note.note= action.payload.note
-          }
-        })
       })
+      .addCase(updateNote.fulfilled, (state, action) => {
+        state.forEach((note) => {
+          if (note._id === action.payload._id) {
+            note.note = action.payload.note;
+          }
+        });
+      });
   },
 });
 

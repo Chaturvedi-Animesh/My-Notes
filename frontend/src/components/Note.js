@@ -14,11 +14,13 @@ function Note({ note }) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateNote({
-      id: note._id,
-      text: text
-    }))
-    setEditing(false)
+    dispatch(
+      updateNote({
+        id: note._id,
+        text: text,
+      })
+    );
+    setEditing(false);
   };
 
   return (

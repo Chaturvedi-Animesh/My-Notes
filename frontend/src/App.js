@@ -1,14 +1,14 @@
-import './App.css';
-import Navbar from './components/navbar';
-import NewNote from './components/NewNote';
-import Notes from './components/Notes';
+import "./App.css";
+import Navbar from "./components/navbar";
+import NewNote from "./components/NewNote";
+import Notes from "./components/Notes";
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      <NewNote/>
-      <Notes/>
+      <Navbar />
+      <NewNote />
+      <Notes />
     </div>
   );
 }
