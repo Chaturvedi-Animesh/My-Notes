@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import {useDispatch} from 'react-redux'
-import { deleteNote } from "../redux/slice/note";
+import { useDispatch } from "react-redux";
+import { deleteNote, updateNote } from "../redux/slice/note";
 
 function Note({ note }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const buttonStyle = {
     margin: "2px",
   };
@@ -14,6 +14,11 @@ function Note({ note }) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    dispatch(updateNote({
+      id: note._id,
+      text: text
+    }))
+    setEditing(false)
   };
 
   return (
@@ -62,7 +67,11 @@ function Note({ note }) {
           >
             <i className="fas fa-pen" />
           </Button>
-          <Button style={buttonStyle} variant="danger" onClick={()=>dispatch(deleteNote(note._id))}>
+          <Button
+            style={buttonStyle}
+            variant="danger"
+            onClick={() => dispatch(deleteNote(note._id))}
+          >
             <i className="fas fa-trash" />
           </Button>
         </div>
