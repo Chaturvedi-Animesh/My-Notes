@@ -4,11 +4,13 @@ const router = express.Router();
 const Note = require("../models/noteModel");
 
 router.get("/", (req, res) => {
-  Note.find().then((notes) => {
-    res.json(notes);
-  }).catch(err=>{
-    res.statusCode(500).json(err)
-  });
+  Note.find()
+    .then((notes) => {
+      res.json(notes);
+    })
+    .catch((err) => {
+      res.statusCode(500).json(err);
+    });
 });
 
 router.post("/", (req, res) => {
@@ -26,13 +28,26 @@ router.post("/", (req, res) => {
     });
 });
 
-router.delete("/:id",(req,res)=>{
-  const id = req.params.id
-  Note.findByIdAndDelete(id).then((data)=>{
-    res.json(data)
-  }).catch(err=>{
-    res.send(err)
-  })
-})
+router.put("/:id", (req, res) => {
+  const id = req.params.id;
+  Note.findByIdAndUpdate(id, req.body, { new: true })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+  Note.findByIdAndDelete(id)
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
 
 module.exports = router;
