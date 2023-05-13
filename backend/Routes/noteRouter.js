@@ -26,4 +26,13 @@ router.post("/", (req, res) => {
     });
 });
 
+router.delete("/:id",(req,res)=>{
+  const id = req.params.id
+  Note.findByIdAndDelete(id).then((data)=>{
+    res.json(data)
+  }).catch(err=>{
+    res.send(err)
+  })
+})
+
 module.exports = router;
