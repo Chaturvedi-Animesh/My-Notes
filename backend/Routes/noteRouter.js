@@ -6,6 +6,8 @@ const Note = require("../models/noteModel");
 router.get("/", (req, res) => {
   Note.find().then((notes) => {
     res.json(notes);
+  }).catch(err=>{
+    res.statusCode(500).json(err)
   });
 });
 

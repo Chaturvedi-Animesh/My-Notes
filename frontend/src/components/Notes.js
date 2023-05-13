@@ -1,35 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAll } from "../redux/slice/note";
 import Note from "./Note";
 
 function Notes() {
 
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      note: "This is note 1",
-    },
-    {
-      id: 2,
-      note: "This is note 2",
-    },
-    {
-      id: 3,
-      note: "This is note 3",
-    },
-    {
-      id: 4,
-      note: "This is note 4",
-    },
-    {
-      id: 5,
-      note: "This is note 5",
-    },
-  ]);
+  const dispatch= useDispatch();
+  const notes=useSelector(state => state.notes)
+
+  useEffect(()=>{
+    dispatch(fetchAll())
+  },[])
+
 
   return (
     <>
       {notes.map((note) => (
         <Note 
+        key={note._id}
         note = {note} />
       ))}
     </>
