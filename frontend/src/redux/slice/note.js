@@ -10,8 +10,11 @@ export const addNote = createAsyncThunk("addNote", async (payload) => {
   const resp = await axios.post("http://localhost:3001/notes/", {
     note: payload,
   });
+  return resp.data;
+});
 
-  console.log(resp.data);
+export const deleteNote = createAsyncThunk("deleteNote", async (payload) => {
+  const resp = await axios.delete(`http://localhost:3001/notes/${payload}`);
   return resp.data;
 });
 
@@ -25,6 +28,9 @@ const notesSlice = createSlice({
       })
       .addCase(addNote.fulfilled, (state, action) => {
         state.push(action.payload);
+      })
+      .addCase(deleteNote.fulfilled, (state, action) => {
+        return state.filter((note) => note._id !== action.payload._id);
       });
   },
 });

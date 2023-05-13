@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import {useDispatch} from 'react-redux'
+import { deleteNote } from "../redux/slice/note";
 
 function Note({ note }) {
+  const dispatch = useDispatch()
   const buttonStyle = {
     margin: "2px",
   };
@@ -59,7 +62,7 @@ function Note({ note }) {
           >
             <i className="fas fa-pen" />
           </Button>
-          <Button style={buttonStyle} variant="danger">
+          <Button style={buttonStyle} variant="danger" onClick={()=>dispatch(deleteNote(note._id))}>
             <i className="fas fa-trash" />
           </Button>
         </div>
