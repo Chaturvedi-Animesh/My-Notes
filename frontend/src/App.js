@@ -1,14 +1,19 @@
 import "./App.css";
+import Register from "./components/LoginSignup/Register";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar";
-import NewNote from "./components/NewNote";
-import Notes from "./components/Notes";
+import NotesComponent from "./components/Notes/index";
+import Login from "./components/LoginSignup/Login";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <NewNote />
-      <Notes />
+      <Routes>
+        <Route path="/" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/notes" element={<NotesComponent />} />
+      </Routes>
     </div>
   );
 }

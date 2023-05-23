@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAll } from "../redux/slice/note";
+import { fetchAll } from "../../redux/slice/note";
 import Note from "./Note";
 
 function Notes() {
   const dispatch = useDispatch();
-  const notes = useSelector((state) => state.notes);
+  const { users, notes } = useSelector((state) => state);
 
   useEffect(() => {
-    dispatch(fetchAll());
-  }, [dispatch]);
+    if (users.isLoggedIn) {
+     dispatch(fetchAll())
+    }
+  }, []);
 
   return (
     <>

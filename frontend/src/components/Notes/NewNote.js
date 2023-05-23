@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addNote } from "../redux/slice/note";
+import { addNote } from "../../redux/slice/note";
 function NewNote() {
   const [text, setText] = useState("");
   const dispatch = useDispatch();
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (e) => {
     dispatch(addNote(text));
     setText("");
   };

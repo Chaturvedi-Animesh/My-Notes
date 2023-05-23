@@ -1,15 +1,22 @@
 const express = require("express");
 const router = express.Router();
-
+const auth= require("../middleware/auth")
 const Note = require("../models/noteModel");
 
+
+router.use(auth)
+
 router.get("/", (req, res) => {
-  Note.find()
+
+  console.log(req.body.email);
+
+
+  Note.find({email : req.body.email})
     .then((notes) => {
-      res.json(notes);
+      res.status(200).json(notes);
     })
     .catch((err) => {
-      res.statusCode(500).json(err);
+      res.status(500).json(err);
     });
 });
 

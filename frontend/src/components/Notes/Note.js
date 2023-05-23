@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { deleteNote, updateNote } from "../redux/slice/note";
+import { deleteNote, updateNote } from "../../redux/slice/note";
 
 function Note({ note }) {
   const dispatch = useDispatch();
@@ -24,38 +24,26 @@ function Note({ note }) {
   };
 
   return (
-    <div style={{ width: "500px", height: "fit-content", margin: "1rem auto" }}>
+    <div
+      style={{
+        width: "500px",
+        height: "fit-content",
+        margin: "1rem auto",
+        padding: "5px",
+        boxShadow: "1px 2px 9px rgb(122 122 122)",
+        borderRadius: "8px",
+      }}
+    >
       <div
         style={{
+          display: editing ? "none" : "flex",
           padding: "5px",
-          display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          boxShadow: "1px 2px 9px rgb(122 122 122)",
-          borderRadius: "8px",
         }}
       >
-        <div>
-          <div style={{ display: editing ? "none" : "" }}>{text}</div>
-          <form
-            style={{
-              display: editing ? "inline" : "none",
-            }}
-            onSubmit={handleOnSubmit}
-          >
-            <input
-              style={{
-                width: "385px",
-                border: "none",
-                borderBottom: "1px solid black",
-              }}
-              type="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
-          </form>
-        </div>
+        <div>{text}</div>
         <div
           style={{
             display: "flex",
@@ -65,7 +53,7 @@ function Note({ note }) {
           <Button
             style={buttonStyle}
             variant="primary"
-            onClick={() => setEditing((prevstate) => !prevstate)}
+            onClick={() => setEditing(true)}
           >
             <i className="fas fa-pen" />
           </Button>
@@ -78,6 +66,31 @@ function Note({ note }) {
           </Button>
         </div>
       </div>
+
+      <form
+        style={{
+          display: editing ? "flex" : "none",
+          padding: "5px",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+        onSubmit={handleOnSubmit}
+      >
+        <input
+          style={{
+            width: "420px",
+            border: "none",
+            borderBottom: "1px solid black",
+          }}
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <Button style={buttonStyle} type="submit" variant="primary">
+          <i class="fas fa-check" />
+        </Button>
+      </form>
     </div>
   );
 }

@@ -5,6 +5,10 @@ const NoteSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: true,
+  },
 });
 
 const Note = mongoose.model("Note", NoteSchema);

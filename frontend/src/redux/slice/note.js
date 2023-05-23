@@ -1,27 +1,27 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axiosInstance from "../../Utils/axiosUtil";
 
 export const fetchAll = createAsyncThunk("fetchAll", async () => {
-  const resp = await axios.get("http://localhost:3001/notes/");
+  const resp = await axiosInstance.get("/notes");
   return resp.data;
 });
 
 export const addNote = createAsyncThunk("addNote", async (payload) => {
-  const resp = await axios.post("http://localhost:3001/notes/", {
+  const resp = await axiosInstance.post("/notes", {
     note: payload,
   });
   return resp.data;
 });
 
 export const updateNote = createAsyncThunk("updateNote", async (payload) => {
-  const resp = await axios.put(`http://localhost:3001/notes/${payload.id}`, {
+  const resp = await axiosInstance.put(`/notes/${payload.id}`, {
     note: payload.text,
   });
   return resp.data;
 });
 
 export const deleteNote = createAsyncThunk("deleteNote", async (payload) => {
-  const resp = await axios.delete(`http://localhost:3001/notes/${payload}`);
+  const resp = await axiosInstance.delete(`/notes/${payload}`);
   return resp.data;
 });
 
